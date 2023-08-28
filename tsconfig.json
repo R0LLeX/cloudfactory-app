@@ -1,6 +1,16 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "target": "es6",
+    "sourceMap": true,
+    "module": "esnext",
+    "lib": [
+      "es6",
+      "dom",
+      "es2015",
+      "es2016"
+    ],
+    "jsx": "react-native",
+    "experimentalDecorators": true,
+  },
+  "extends": "expo/tsconfig.base"
 }

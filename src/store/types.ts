@@ -1,6 +1,7 @@
 export interface QuotesDataType {
-    symbol: string,
-    open: string,
+    displayName: string,
+    symbol: string;
+    dailyChange: string;
     low: string,
     high: string,
 }

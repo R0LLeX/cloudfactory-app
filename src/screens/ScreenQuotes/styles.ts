@@ -1,24 +1,12 @@
-import { StyleSheet, Dimensions } from 'react-native'
-
+import { StyleSheet } from 'react-native'
 export const styles = StyleSheet.create({
-    container: {
+    Container: {
         flex: 1,
-        backgroundColor: '#FFF'
+        backgroundColor: '#FFF',
     },
-    item: {
-        borderColor: 'gray',
-        borderWidth: 1,
-        // backgroundColor: '#4D243D',
+    WrapperLoading: {
+        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        // margin: 1,
-        height: Dimensions.get('window').width / 3,
-    },
-    itemInvisible: {
-        backgroundColor: 'transparent',
-    },
-    itemText: {
-        color: '#000',
+        justifyContent: 'center'
     },
 });
