@@ -22,17 +22,14 @@ export const styles = StyleSheet.create({
         color: '#0E0E10',
         fontSize: 18,
         fontWeight: "700",
-        fontFamily: 'HelveticaNeue-Medium'
     },
     DailyChange: {
         fontSize: 17,
         fontWeight: "500",
-        fontFamily: 'HelveticaNeue-Bold',
     },
     Price: {
         fontSize: 15,
         fontWeight: "500",
-        fontFamily: 'KohinoorBangla-Regular',
         color: '#6F6F79',
     }
 })

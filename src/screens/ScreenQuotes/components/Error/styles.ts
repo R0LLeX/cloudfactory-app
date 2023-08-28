@@ -18,6 +18,5 @@ export const styles = StyleSheet.create({
     Title: {
         fontSize: 25,
         color: '#0E0E10',
-        fontFamily: 'Helvetica'
     }
 })
