@@ -1,13 +1,12 @@
-import {StyleSheet, Dimensions} from 'react-native'
-
-const screenWidth = Dimensions.get('window').width;
+import { StyleSheet } from 'react-native'
+import { Colors, screenWidth } from "../../../../constants";
 export const styles = StyleSheet.create({
     Container: {
         flex: 1,
         alignItems: 'center'
     },
     WrapperError: {
-        borderColor: '#0E0E10',
+        borderColor: Colors.darkest,
         borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -17,6 +16,6 @@ export const styles = StyleSheet.create({
     },
     Title: {
         fontSize: 25,
-        color: '#0E0E10',
+        color: Colors.darkest,
     }
 })

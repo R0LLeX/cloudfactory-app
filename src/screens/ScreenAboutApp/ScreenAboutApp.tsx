@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, Image} from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Keys, ScreenNavigatorProps } from "../../navigation/types";
 import React from "react";
 import { styles } from './styles'
@@ -6,7 +6,7 @@ import { styles } from './styles'
 export const ScreenAboutApp: React.FC<ScreenNavigatorProps<Keys.AboutApp>> = ({ navigation }) => (
       <View style={styles.Container}>
         <View style={styles.WrapperImage}>
-           <Image style={{ width: '100%' }} source={require('../../assets/images/logo.png')} resizeMode={'contain'} />
+           <Image style={styles.Image} source={require('../../assets/images/logo.png')} resizeMode={'contain'} />
         </View>
            <TouchableOpacity
               activeOpacity={0.8}
