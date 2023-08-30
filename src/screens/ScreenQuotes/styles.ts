@@ -6,11 +6,6 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.white,
     },
-    WrapperLoading: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
     WrapperCell: {
         borderColor: Colors.gray,
         borderWidth: 1,

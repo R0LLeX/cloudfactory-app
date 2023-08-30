@@ -2,8 +2,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ScreenAboutApp } from '../screens/ScreenAboutApp';
 import { ScreenQuotes } from '../screens/ScreenQuotes';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Keys, RootStackParamList, IconsDataType } from "./types";
-import { HeaderLeft } from "./components/HeaderLeft/HeaderLeft";
+import { Keys, RootStackParamList, IconsDataType } from './types';
+import { HeaderLeft } from './components/HeaderLeft/HeaderLeft';
 import { Colors } from '../constants';
 import { styles } from './styles'
 
@@ -16,9 +16,9 @@ const iconsData: IconsDataType = {
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
 export const AppBottomStackNavigator = () => {
-    const { Navigator, Screen } = Tab
+    const { Screen, Group } = Tab;
     return (
-        <Navigator
+        <Tab.Navigator
             screenOptions={({ route }) => ({
                 title: iconsData[route.name].topLabel,
                 tabBarLabel: iconsData[route.name].tabBarLabel,
@@ -32,8 +32,10 @@ export const AppBottomStackNavigator = () => {
                     return <Ionicons name={icon} size={30} color={color} />
                 },
             })}>
-           <Screen name={Keys.AboutApp} component={ScreenAboutApp} />
-           <Screen name={Keys.Quotes} component={ScreenQuotes} options={HeaderLeft} />
-        </Navigator>
+            <Group>
+                <Screen name={Keys.AboutApp} component={ScreenAboutApp} />
+                <Screen name={Keys.Quotes} component={ScreenQuotes} options={HeaderLeft} />
+            </Group>
+        </Tab.Navigator>
     );
 }

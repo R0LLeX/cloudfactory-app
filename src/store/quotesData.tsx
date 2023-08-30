@@ -1,6 +1,10 @@
-import { makeAutoObservable, action, runInAction } from "mobx";
-import axios from "axios";
-import { QuotesCollection, QuotesDataType } from "./types";
+import { makeAutoObservable, action, configure } from 'mobx';
+import axios from 'axios';
+import { QuotesCollection, QuotesDataType } from './types';
+
+configure({
+    enforceActions: 'never',
+})
 
 class QuotesData {
     quotes: Array<QuotesDataType> = [];
@@ -11,18 +15,16 @@ class QuotesData {
         makeAutoObservable(this)
     }
     @action
-    fetchTickerData = async () => {
-        runInAction(() => this.isRequest = true);
+    fetchQuotesData = async () => {
+        this.isRequest = true;
         try {
-            const response = await axios.get(
-                'https://api.poloniex.com/markets/ticker24h'
-            );
+            const response = await axios.get('https://api.poloniex.com/markets/ticker24h');
             this.transformQuotes(response.data);
         } catch (error) {
-            runInAction(() => this.isError = true);
+            this.isError = true;
             console.error('Error fetching data:', error);
         } finally {
-            runInAction(() => this.isRequest = false);
+            this.isRequest = false;
         }
     };
 

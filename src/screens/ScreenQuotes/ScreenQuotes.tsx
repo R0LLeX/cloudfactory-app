@@ -1,11 +1,11 @@
-import { View, FlatList, ActivityIndicator, Animated, ListRenderItemInfo, Text } from "react-native";
+import { View, FlatList, Animated, ListRenderItemInfo, Text } from "react-native";
 import React, { useEffect } from "react";
 import { Keys, ScreenNavigatorProps } from "../../navigation/types";
 import { observer} from "mobx-react-lite";
 import quotes from "../../store/quotesData"
 import { styles } from "./styles";
 import { useFocusEffect } from "@react-navigation/native";
-import { Error } from "./components/Error/Error";
+import { Error, Loader } from "./components";
 import { QuotesDataType } from "../../store/types";
 import { Colors } from "../../constants";
 
@@ -15,7 +15,7 @@ export const ScreenQuotes: React.FC<ScreenNavigatorProps<Keys.Quotes>> = observe
     const fadeAnim = new Animated.Value(0);
 
     useEffect(() => {
-        quotes.fetchTickerData().then();
+        quotes.fetchQuotesData().then();
     }, []);
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export const ScreenQuotes: React.FC<ScreenNavigatorProps<Keys.Quotes>> = observe
     }, [fadeAnim]);
 
     useFocusEffect(() => {
-        const fetchDataInterval = setInterval(quotes.fetchTickerData, 5000);
+        const fetchDataInterval = setInterval(quotes.fetchQuotesData, 5000);
         return () => clearInterval(fetchDataInterval);
     });
 
@@ -53,20 +53,15 @@ export const ScreenQuotes: React.FC<ScreenNavigatorProps<Keys.Quotes>> = observe
 
     return (
         <View style={styles.Container}>
-            {isError && <Error />}
-            {!isError && !isFilledData &&
-                <View style={styles.WrapperLoading}>
-                    <ActivityIndicator size={'large'} />
-                </View>}
-            {!isError && isFilledData && (
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={quotes.quotes}
-                    renderItem={renderQuoteItem}
-                    numColumns={3}
-                    keyExtractor={(item) => item.symbol}
-                />
-            )}
+            {!isError && !isFilledData && <Loader />}
+              <FlatList
+                 ListHeaderComponent={isError && <Error />}
+                 showsVerticalScrollIndicator={false}
+                 data={quotes.quotes || []}
+                 renderItem={renderQuoteItem}
+                 numColumns={3}
+                 keyExtractor={(item) => item.symbol}
+              />
         </View>
     )
 })

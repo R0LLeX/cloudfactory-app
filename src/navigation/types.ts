@@ -1,5 +1,5 @@
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RouteProp } from "@react-navigation/native";
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
 
 export type ScreenNavigatorProps<T extends keyof RootStackParamList> = {
     navigation: StackNavigationProp<RootStackParamList, T>;
@@ -19,7 +19,7 @@ export type QuotesParamsList = {
 export enum Keys {
     AboutApp =  'AboutApp',
     Quotes = 'Quotes',
-};
+}
 
 export interface IconsDataType {
     [key: string]: {

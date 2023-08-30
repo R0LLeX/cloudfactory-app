@@ -1,9 +1,9 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { RootStackParamList } from "../../types";
-import { styles } from "./styles"
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { RootStackParamList } from '../../types';
+import { styles } from './styles';
 
 export const HeaderLeft = ({ navigation }: { navigation: StackNavigationProp<RootStackParamList> }) => {
   const goBack = (
