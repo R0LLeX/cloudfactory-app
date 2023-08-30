@@ -7,30 +7,28 @@ configure({
 })
 
 class QuotesData {
-    quotes: Array<QuotesDataType> = [];
-    quotesCollection: QuotesCollection = {};
-    isRequest = false;
-    isError = false;
+    public quotes: Array<QuotesDataType> = [];
+    public isError = false;
+    private _quotesCollection: QuotesCollection = {};
+
     constructor() {
         makeAutoObservable(this)
     }
+
     @action
-    fetchQuotesData = async () => {
-        this.isRequest = true;
+    public fetchQuotesData = async () => {
         try {
             const response = await axios.get('https://api.poloniex.com/markets/ticker24h');
-            this.transformQuotes(response.data);
+            this._transformQuotes(response.data);
         } catch (error) {
             this.isError = true;
             console.error('Error fetching data:', error);
-        } finally {
-            this.isRequest = false;
         }
     };
 
-    transformQuotes = (refreshedQuotes: QuotesCollection) => {
+    private _transformQuotes = (refreshedQuotes: QuotesCollection) => {
         const quotesComp: QuotesDataType[] = Object.keys(refreshedQuotes).map((name: string) => {
-            const currElement = this.quotesCollection[name];
+            const currElement = this._quotesCollection[name];
             let isChanged = false;
             if (currElement) {
                 isChanged =
@@ -41,7 +39,7 @@ class QuotesData {
 
             return { ...refreshedQuotes[name], isChanged };
         });
-        this.quotesCollection = refreshedQuotes;
+        this._quotesCollection = refreshedQuotes;
         this.quotes = quotesComp;
         this.isError = false;
     };
